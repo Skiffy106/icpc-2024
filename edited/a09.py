@@ -1,3 +1,5 @@
+import tester
+
 # Brute Force
 def bf_solve(s):
     tot = 0
@@ -8,10 +10,6 @@ def bf_solve(s):
             tot += pow(j-i, 2)
     return int(tot % (pow(10, 9) + 7))
 
-#first pass
-# for chr_idx, ch in enumerate(inp):
-#     letter_idx = ord(ch) % 26
-
 # Dynamic Programming
 def dp_simple_solve(s):
     n = len(s)
@@ -19,6 +17,7 @@ def dp_simple_solve(s):
 
     chars = [[] for _ in range(26)]
 
+    # IDEA: build up hash set in first pass eliminates preprocessing
     for chr_idx, ch in enumerate(s):
         letter_idx = (ord(ch) - ord("A")) % 26
         chars[letter_idx].append(chr_idx)
@@ -64,7 +63,4 @@ def dp_simple_solve(s):
     return int(tot % (pow(10, 9) + 7))
 
 if __name__ == "__main__":
-    s = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-
-    print("Brute force:", bf_solve(s))
-    print("DP - simple:", dp_simple_solve(s))
+    tester.test_09()
